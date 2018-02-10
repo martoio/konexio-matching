@@ -1,12 +1,70 @@
-<form action="/register" method="post">
-    <input type="text" name="firstName" />
-    <input type="text" name="lastName" />
-    <input type="text" name="position" />
-    <input type="text" name="company" />
-    <input type="text" name="country" />
-    <input type="text" name="bio" />
-    <input type="text" name="skills" />
-    <input type="hidden" name="interests" value="{{interests}}">
-    <input type="hidden" name="email" value="{{email}}">
-    <input type="submit" value="&rarr;">
+<!--The MIT License
+
+Copyright (c) 2010-2018 Google, Inc. http://angularjs.org
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+<div class="center">
+    <div id="mentor-heading">
+        <img id="title" src="images/logo.png" />
+        <!--<button id="change-photo">Change Photo</button>-->
+        <!--<img id='circle-face' src="images/guy.jpg" alt="Avatar" />-->
+    </div>
+    <form action="/register" method="post">
+        <div id="mentor-data-entry">
+            <table id="table">
+                <tr class="cell">
+                    <td id='field-names'>First Name</td>
+                    <td class="left-form-side"><input id='field-entries' type="text" name="firstName" /></td>
+                </tr>
+                <tr class="cell">
+                    <td id='field-names'>Last Name</td>
+                    <td class="left-form-side"><input id='field-entries' type="text" name="lastName" /></td>
+                </tr>
+                <tr class="cell">
+                    <td id='field-names'>Position</div>
+        <td class="left-form-side"><input id='field-entries' type="text" name="position" /></td>
+        </tr>
+        <tr class="cell">
+            <td id='field-names'>Company</td>
+            <td class="left-form-side"><input id='field-entries' type="text" name="company" /></td>
+        </tr>
+        <tr class="cell">
+            <td id='field-names'>City</td>
+            <td class="left-form-side"><input id='field-entries' type="text" name="country" /></td>
+        </tr>
+        <tr class="cell">
+            <td id='field-names'>Country</td>
+            <td class="left-form-side"><input id='field-entries' type="text" name="country" /></td>
+        </tr>
+        </table>
+        <div class='table-header'>Tell us more about yourself!</div>
+        <textarea name="bio" placeholder="Interests, backgrounds, hobbies, etc." rows="5" cols="100"></textarea>
+        <div class='table-header'>What skills would you like to highlight?</div>
+        <textarea name="skills" placeholder="Programming languages, design skills, soft skills, etc." rows="5" cols="100" /></textarea>
+</div>
+<!--<button class="next-arrow-no-float"><a href="/mentorboard">&rarr;</a></button>-->
+<input type="hidden" name="interests" value="{{interests}}">
+<input type="hidden" name="email" value="{{email}}">
+<input type="submit" class="next-arrow-no-float" value="&rarr;">
 </form>
+<div class="circle-group">
+    <div id="circle"></div><div id="circle"></div>
+</div>
+</div>

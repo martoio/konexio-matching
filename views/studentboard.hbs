@@ -31,10 +31,10 @@ THE SOFTWARE.
 <div class="main center">
     <br>
     <div class="dash-title">Mentor Board</div>
-    <div class="sec-title center">Students you've connected with</div>
+    <div class="sec-title center">Mentors you've connected with</div>
     <div class="box">
         <!--TODO: Add feature if missing-->
-        {{#each students}}
+        {{#each mentors}}
             <div class="student-prof">
                 <div class="square">
                     <img src="{{avatar}}" alt="">
@@ -45,10 +45,10 @@ THE SOFTWARE.
         {{/each}}
     </div>
     <hr>
-    <div class="sec-title center">Students looking for mentors</div>
+    <div class="sec-title center">Available mentors</div>
     <div class="box">
         <!--TODO: display something if none available-->
-        {{#each requestedMentor}}
+        {{#each availMentors}}
             <div class="student-prof">
                 <div class="square">
                     <img src="{{avatar}}" alt="">

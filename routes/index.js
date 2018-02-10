@@ -1,4 +1,28 @@
-var express = require('express');
+/*
+//The MIT License
+
+Copyright (c) 2010-2018 Google, Inc. http://angularjs.org
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+    var express = require('express');
 var router = express.Router();
 const Student = require('../models/Student');
 const Mentor = require('../models/Mentor');
@@ -11,6 +35,7 @@ const passport = require('../auth/index');
  * GET home page.
  * */
 router.get('/', function(req, res, next) {
+    console.log(res.locals);
   res.render('root', { sessionFlash: res.locals.sessionFlash});
 });
 
@@ -29,11 +54,13 @@ router.post('/login', function (req, res) {
     Student.findOne({email: req.body.email}, function (err, user) {
         if(user){
             res.redirect(307, '/login/student');
+            return;
         }
     });
     Mentor.findOne({email: req.body.email}, function (err, user) {
         if(user){
             res.redirect(307, '/login/mentor');
+            return;
         }
     });
 
@@ -54,7 +81,7 @@ router.post('/login/mentor',
 router.post('/login/student',
     passport.authenticate('local-student', { failureRedirect: '/login' }),
     function(req, res) {
-        res.redirect('/dashboard');
+        res.redirect('/studentboard');
     }
 );
 
@@ -116,17 +143,26 @@ router.get('/onboard-2', function (req, res, next) {
 router.post('/register', function (req, res, next) {
     console.log(req.body);
     //TODO: validate data
-    let m = new Mentor({
-        name: req.body.firstName+' '+lastName,
-        position: req.body.position,
-        location: req.body.country,
-        email: req.body.email,
-        bio: req.body.bio,
-        experience: req.body.skills,
-        interests: req.body.interests.split(',')
 
-    });
-
+    Mentor.findOneAndUpdate(
+        {email: req.body.email},
+        {$set: {
+            name: req.body.firstName+' '+req.body.lastName,
+            position: req.body.position,
+            location: req.body.country,
+            bio: req.body.bio,
+            experience: req.body.skills,
+            interests: req.body.interests.split(',')
+        }}, null, function(err){
+            if(err) {
+                throw err;
+            }
+            req.session.sessionFlash = {
+                type: 'success',
+                message: 'Please login to get to the dashboard'
+            };
+            res.redirect('/');
+        });
 });
 
 router.get('/mentorboard', checkAuth, function(req, res, next){
@@ -137,7 +173,7 @@ router.get('/mentorboard', checkAuth, function(req, res, next){
             return {
                 name: student.name,
                 interests: student.interests.join(', '),
-                avatar: student.avatar
+                avatar: student.avatar || 'https://www.accountingweb.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png'
             };
         });
         Student.find({requestedMentor: true}, function (err, requestees) {
@@ -146,7 +182,7 @@ router.get('/mentorboard', checkAuth, function(req, res, next){
                 return {
                     name: student.name,
                     interests: student.interests.join(', '),
-                    avatar: student.avatar
+                    avatar: student.avatar || 'https://www.accountingweb.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png'
                 };
             });
             res.render('mentorboard', {students: params.students, requestedMentor: reqs});
@@ -170,7 +206,7 @@ router.get('/questionboard', checkAuth, function(req, res, next){
                 question: q.question,
                 description: q.description,
                 author: q.poster.name,
-                avatar: q.poster.avatar,
+                avatar: q.poster.avatar || 'https://www.accountingweb.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png',
                 postedAt: q.postedAt
             };
         });
@@ -180,6 +216,31 @@ router.get('/questionboard', checkAuth, function(req, res, next){
     });
 
 });
+
+router.get('/studentboard', checkAuth, function (req, res, next) {
+    let s = Student.findOne({email: req.user.email}).populate('mentors').exec(function (err, user) {
+        let params = {};
+        params.mentors = user.mentors.map(function (mentor) {
+            return {
+                name: mentor.name,
+                interests: mentor.interests.join(', '),
+                avatar: mentor.avatar || 'https://www.accountingweb.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png'
+            };
+        });
+        Mentor.find({'name': {$ne: 'null'}}, function (err, mentors) {
+            let ms = mentors.map((mentor) => {
+                return {
+                    name: mentor.name,
+                    interests: mentor.interests.join(', '),
+                    avatar: mentor.avatar || 'https://www.accountingweb.com/sites/all/modules/custom/sm_pp_user_profile/img/default-user.png'
+                };
+            });
+            res.render('studentboard', {mentors: params.mentors, availMentors: ms});
+        });
+
+    });
+});
+
 /**
  * Logout method
  */
