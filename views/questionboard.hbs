@@ -1,11 +1,74 @@
+<style>
+    .main{
+        font-family: 'Helvetica', 'sans-serif';
+    }
+    .main section{
+        width: 80%;
+        margin: 0 auto;
+    }
+    .main .question {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #cccccc;
+        padding: 32px 0;
+
+    }
+    .main .question .poster{
+        width: 30%;
+        text-align: center;
+    }
+    .poster p{
+        margin:0;
+        font-size: .9em;
+    }
+    .main .question .poster .thumbnail, .thumbnail img {
+        border-radius: 999px;
+
+    }
+    .main .question .question-content{
+        width:70%;
+    }
+    .question-content h3{
+        font-size: 16px;
+    }
+    .question-content p{
+        font-size:14px;
+    }
+
+    #log-out{
+        position: relative;
+        bottom: 40px;
+    }
+</style>
+
 <div class="sidenav center">
 	<a href="#about"><img id="pin" src="images/pin.png" /></a>
 	<a href="#services"><img id="heads" src="images/heads.png" /></a>
 	<a href="#clients"><img id="gear" src="images/gear.png" /></a>
+    <a href="/logout" id="log-out">Log Out</a>
 </div>
 
 <div class="main">
-	<button id="log-out">Log Out</button>
-	<div class="center dash-title">Question Board</div>
-	<p>This sidebar is of full height (100%) and always shown.</p>
+
+	<div class="center dash-title">Forum</div>
+    <section>
+        {{#each questions}}
+            <div class="question">
+                <div class="poster">
+                    <div class="thumbnail">
+                        <img src="{{avatar}}">
+                    </div>
+                    <p>{{author}}</p>
+                </div>
+                <div class="question-content">
+                    <h3>{{this.question}}</h3>
+                    <p>{{this.description}}</p>
+                </div>
+
+            </div>
+
+        {{/each}}
+    </section>
+
 </div>
+

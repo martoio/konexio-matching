@@ -1,7 +1,6 @@
 const passport = require('passport');
 let strategies = {
     //TODO:
-
     //If needed, you can integrate third-party login providers
     // 'facebook-strategy': require('./facebook/'),
     // 'google-strategy': require('./google/'),
@@ -19,7 +18,9 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function (obj, done) {
     done(null, obj);
 });
-
+/**
+ * Attach passport strategies
+ */
 for(let strategy in strategies) {
     passport.use(strategy, strategies[strategy]);
 }

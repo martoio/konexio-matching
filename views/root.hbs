@@ -1,16 +1,41 @@
 <div class="center">
     <img id="title" src="images/logo.png" />
-    <div id="subtitle">EMPOWERMENT AND CONNECTION THROUGH DIGITAL LEARNING</div>
-    <form action="/login" method="post">
+    <form action="/login" method="post" id="signup-form">
         <div class="input-group">
             <div><input class="input" name="email" type="email" placeholder="EMAIL" /></div>
             <div><input class="input" name="password" type="password" placeholder="PASSWORD" /></div>
         </div>
         <div class="button-group">
-            <input class="button login-button" type="submit" value="LOG IN">
+            <input id="login-btn" class="button login-button" type="submit" value="LOG IN">
             <!--<a href="/dashboard"><button class="button login-button">LOG IN</button></a>-->
-            <a href="/signup"><button class="button signup-button">SIGN UP</button></a>
+            <input id="signup-btn" class="button signup-button" type="submit" value="SIGN UP">
         </div>
     </form>
     <div class="text"><a href="">Forgot your password?</a></div>
 </div>
+
+{{#if messages}}
+    <div class="error">
+        {{messages.info}}
+    </div>
+{{/if}}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+
+    let form = $('#signup-form');
+    let lbtn = $('#login-btn');
+    let sbtn = $('#signup-btn');
+
+    lbtn.on('click', function (e) {
+        e.preventDefault();
+        form.attr('action', '/login');
+        form.submit();
+    });
+
+    sbtn.on('click', function (e) {
+        e.preventDefault();
+        form.attr('action', '/signup');
+        form.submit();
+    });
+</script>

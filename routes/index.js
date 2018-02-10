@@ -2,18 +2,23 @@ var express = require('express');
 var router = express.Router();
 const Student = require('../models/Student');
 const Mentor = require('../models/Mentor');
+const Question = require('../models/Question');
 
 const passport = require('../auth/index');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('root', { title: 'Express' });
+  res.render('root', { messages: req.flash('error')});
 });
 
+/***
+ * LOGIN
+ */
 router.get('/login', function (req, res, next) {
     res.render('login');
 });
 
-//TODO: FIX LOGIN HACK. This just redirects the request to either the
+//TODO: FIX LOGIN HACK.
+// This just redirects the request to either the
 //mentor/student auth. The easiest way to fix it is to merge the
 //mentor/student tables into 1 table so that you can index by email;
 router.post('/login', function (req, res) {
@@ -29,7 +34,9 @@ router.post('/login', function (req, res) {
     });
 
 });
-
+/**
+ * Convenience login method for mentors. Check above point for relevant todo
+ */
 router.post('/login/mentor',
     passport.authenticate('local-mentor', { failureRedirect: '/login' }),
     function(req, res) {
@@ -37,7 +44,9 @@ router.post('/login/mentor',
     }
 );
 
-
+/**
+ * Convenience login method for students. Check above point for relevant todo and potential fix
+ */
 router.post('/login/student',
     passport.authenticate('local-student', { failureRedirect: '/login' }),
     function(req, res) {
@@ -45,16 +54,29 @@ router.post('/login/student',
     }
 );
 
-function log(req, res, next){
-    next();
-}
-
 router.get('/signup', function (req, res, next) {
   res.render('signup', {});
 });
 
 router.post('/signup', function(req, res, next){
+    console.log(req.body);
+    //check if user taken
+    Mentor.findOne({email: req.body.email}, function(err, user){
+        console.log(user);
+        if(err){
+            throw err;
+        }
+        if(user){
+            //set flash message;
+            //TODO: figure out why this doesn't work
+            req.flash('error', 'This email is already in use');
+            res.redirect('/');
+        }
+        let m = new Mentor({
 
+        });
+    });
+    //go to onboarding-flow
 });
 
 router.get('/mentorboard', checkAuth, function(req, res, next){
@@ -86,10 +108,31 @@ router.get('/mentorboard', checkAuth, function(req, res, next){
 
 });
 
+/***
+ * FORUM
+ */
 router.get('/questionboard', checkAuth, function(req, res, next){
-    res.render('questionboard');
-});
+    Question.find({}).sort('-postedAt').limit(3).populate('poster').exec(function(err, qs){
+        let params = {};
+        //Clean up object passed into HBS
+        params.questions = qs.map((q) => {
+            return {
+                question: q.question,
+                description: q.description,
+                author: q.poster.name,
+                avatar: q.poster.avatar,
+                postedAt: q.postedAt
+            };
+        });
 
+        res.render('questionboard', {questions: params.questions});
+
+    });
+
+});
+/**
+ * Logout method
+ */
 router.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
