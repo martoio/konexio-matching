@@ -45,16 +45,16 @@ StudentSchema.pre('save', function(next){
     }
 });
 
-StudentSchema.methods.isValidPassword = function (newPassword) {
+StudentSchema.methods.isValidPassword = async function (newPassword) {
     try {
-        return bcrypt.compareSync(newPassword, this.password);
+        return await bcrypt.compare(newPassword, this.password);
     }catch (error){
         throw new Error(error);
     }
 };
 
-StudentSchema.methods.createPassword = function(newPassword){
-    return bcrypt.hashSync(newPassword, bcrypt.genSaltSync(10));
+StudentSchema.methods.createPassword = async function(newPassword){
+    return bcrypt.hash(newPassword, await bcrypt.genSalt(10));
 };
 
 
