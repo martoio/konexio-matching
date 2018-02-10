@@ -1,14 +1,42 @@
 <div class="center">
 	<div id="mentor-heading">
-		<button>Change Photo</button>
-		<img src="images/CareerClicked.png">
+		<button id="change-photo">Change Photo</button>
+		<img id='circle-face' src="images/guy.jpg" alt="Avatar" />
 	</div>
 	<form>
-		<div id="right-side">
+		<div id="mentor-data-entry">
+			<table id="table">
+				<tr class="cell">
+					<td id='field-names'>First Name</td>
+					<td class="left-form-side"><input id='field-entries' type="text" name="firstname" /></td>
+				</tr>
+				<tr class="cell">
+					<td id='field-names'>Last Name</td>
+					<td class="left-form-side"><input id='field-entries' type="text" name="lastname" /></td>
+				</tr>
+				<tr class="cell">
+					<td id='field-names'>Position</div>
+					<td class="left-form-side"><input id='field-entries' type="text" name="position" /></td>
+				</tr>
+				<tr class="cell">
+					<td id='field-names'>Company</td>
+					<td class="left-form-side"><input id='field-entries' type="text" name="company" /></td>
+				</tr>
+				<tr class="cell">
+					<td id='field-names'>City</td>
+					<td class="left-form-side"><input id='field-entries' type="text" name="country" /></td>
+				</tr>
+				<tr class="cell">
+					<td id='field-names'>Country</td>
+					<td class="left-form-side"><input id='field-entries' type="text" name="country" /></td>
+				</tr>
+			</table>
+			<div class='table-header'>Tell us more about yourself!</div>
+			<textarea name="more" placeholder="Interests, backgrounds, hobbies, etc." rows="5" cols="100"></textarea>
+			<div class='table-header'>What skills would you like to highlight?</div>
+			<textarea name="skills" placeholder="Programming languages, design skills, soft skills, etc." rows="5" cols="100" /></textarea>
 		</div>
-		<div id="left-side">
-		</div>
-		<button class="next-arrow"><a href="/mentorboard">&rarr;</a></button>
+		<button class="next-arrow-no-float"><a href="/mentorboard">&rarr;</a></button>
 	</form> 
 	<div class="circle-group">
 		<div id="circle"></div><div id="circle"></div>
