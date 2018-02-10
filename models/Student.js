@@ -35,10 +35,10 @@ const StudentSchema = new Schema({
     }
 });
 
-StudentSchema.pre('save', async function(next){
+StudentSchema.pre('save', function(next){
     try{
-        const salt = await bcrypt.genSalt(10);
-        this.password = await bcrypt.hash(this.password, salt);
+        const salt = bcrypt.genSaltSync(10);
+        this.password = bcrypt.hashSync(this.password, salt);
         next();
     }catch (error){
         next(error);
