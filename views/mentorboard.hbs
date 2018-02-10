@@ -1,39 +1,40 @@
 <div class="sidenav center">
-	<a href="#about"><img id="pin" src="images/pin.png" /></a>
-	<a href="#services"><img id="heads" src="images/heads.png" /></a>
-	<a href="#clients"><img id="gear" src="images/gear.png" /></a>
+    <a href="#about"><img id="pin" src="images/pin.png" /></a>
+    <a href="#services"><img id="heads" src="images/heads.png" /></a>
+    <a href="#clients"><img id="gear" src="images/gear.png" /></a>
 </div>
-
-<div class="main">
-	<button id="log-out">Log Out</button>
-	<br>
-	<div class="center dash-title">Mentor Board</div>
-	<div id="connections">
-		<div class="box">
-			<div class="sec-title center">Students you've connected with</div>
-			<div class="student-prof">
-				<div class="square"></div>
-			</div>
-			<div class="student-prof">
-				<div class="square"></div>
-			</div>
-			<div class="student-prof">
-				<div class="square"></div>
-			</div>
-		</div>
-	</div>
-	<div id="looking">
-		<div class="sec-title center">Students looking for mentors</div>
-		<div class="box">
-			<div class="student-prof">
-				<div class="square"></div>
-			</div>
-			<div class="student-prof">
-				<div class="square"></div>
-			</div>
-			<div class="student-prof">
-				<div class="square"></div>
-			</div>
-		</div>
-	</div>
+{{#each students}}
+    <p>{{name}}</p>
+{{/each}}
+<div class="main center">
+    <button id="log-out">Log Out</button>
+    <br>
+    <div class="dash-title">Mentor Board</div>
+    <div class="sec-title center">Students you've connected with</div>
+    <div class="box">
+        <!--TODO: Add feature if missing-->
+        {{#each students}}
+            <div class="student-prof">
+                <div class="square">
+                    <img src="{{avatar}}" alt="">
+                </div>
+                <div class="name">{{name}}</div>
+                <div class="interest">{{interests}}</div>
+            </div>
+        {{/each}}
+    </div>
+    <hr>
+    <div class="sec-title center">Students looking for mentors</div>
+    <div class="box">
+        <!--TODO: display something if none available-->
+        {{#each requestedMentor}}
+            <div class="student-prof">
+                <div class="square">
+                    <img src="{{avatar}}" alt="">
+                </div>
+                <div class="name">{{name}}</div>
+                <div class="interest">{{interests}}</div>
+            </div>
+        {{/each}}
+    </div>
 </div>

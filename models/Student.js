@@ -19,20 +19,22 @@ const StudentSchema = new Schema({
     age: {
         type: Number,
     },
+    avatar: {
+        type: String
+    },
     bio: {
         type: String
     },
-    tracks: {
-        type: [Schema.Types.ObjectId],
+    tracks: [{
+        type: Schema.Types.ObjectId,
         ref: 'track'
-    },
-    interests: {
-        type: [String]
-    },
-    mentor: {
-        type: [Schema.Types.ObjectId],
+    }],
+    interests: [String],
+    mentors: [{
+        type: Schema.Types.ObjectId,
         ref: 'mentor'
-    }
+    }],
+    requestedMentor: Boolean
 });
 
 StudentSchema.pre('save', function(next){

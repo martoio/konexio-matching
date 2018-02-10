@@ -15,6 +15,9 @@ const MentorSchema = new Schema({
         type: String,
         required: true
     },
+    avatar:{
+        type: String
+    },
     age: {
         type: Number,
     },
@@ -34,13 +37,11 @@ const MentorSchema = new Schema({
     experience: {
         type: String
     },
-    interests: {
-        type: [String]
-    },
-    student: {
-        type: [Schema.Types.ObjectId],
+    interests: [String],
+    students: [{
+        type: Schema.Types.ObjectId,
         ref: 'student'
-    },
+    }],
     maxNumStudents: {
         type: Number
     },
