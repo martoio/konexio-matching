@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+
 const Schema = mongoose.Schema;
 //Create a new schema
-const MentorSchema = new Schema({
+const StudentSchema = new Schema({
     name: {
         type: String,
         required: true
@@ -21,39 +22,20 @@ const MentorSchema = new Schema({
     bio: {
         type: String
     },
-    location: {
-        type: String,
-        required: true
-    },
-    company: {
-        type: String
-    },
-    position: {
-        type: String
-    },
-    experience: {
-        type: String
+    tracks: {
+        type: [Schema.Types.ObjectId],
+        ref: 'track'
     },
     interests: {
         type: [String]
     },
-    student: {
+    mentor: {
         type: [Schema.Types.ObjectId],
-        ref: 'student'
-    },
-    maxNumStudents: {
-        type: Number
-    },
-    maxNumHours: {
-        type: Number
-    },
-    integration: {
-        type: Boolean
+        ref: 'mentor'
     }
 });
 
-
-MentorSchema.pre('save', async function(next){
+StudentSchema.pre('save', async function(next){
     try{
         const salt = await bcrypt.genSalt(10);
         this.password = await bcrypt.hash(this.password, salt);
@@ -63,7 +45,7 @@ MentorSchema.pre('save', async function(next){
     }
 });
 
-MentorSchema.methods.isValidPassword = async function (newPassword) {
+StudentSchema.methods.isValidPassword = async function (newPassword) {
     try {
         return await bcrypt.compare(newPassword, this.password);
     }catch (error){
@@ -71,12 +53,11 @@ MentorSchema.methods.isValidPassword = async function (newPassword) {
     }
 };
 
-MentorSchema.methods.createPassword = async function(newPassword){
+StudentSchema.methods.createPassword = async function(newPassword){
     return bcrypt.hash(newPassword, await bcrypt.genSalt(10));
 };
 
 
 //create a model and export
-const Mentor = mongoose.model('mentor', MentorSchema);
-
-module.exports = Mentor;
+const Student = mongoose.model('student', StudentSchema);
+module.exports = Student;
