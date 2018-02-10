@@ -6,7 +6,6 @@ const localStrategy = new LocalStrategy({
     function (email, password, done) {
         //Try to find user from username;
         Mentor.findOne({email}, function(err, user){
-            console.log(user);
             if(err){
                 return done(err);
             }
@@ -22,6 +21,5 @@ const localStrategy = new LocalStrategy({
             return done(null, user);
     });
 });
-
 
 module.exports = localStrategy;
