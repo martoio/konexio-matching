@@ -54,6 +54,9 @@ router.post('/login/student',
     }
 );
 
+/**
+ * SIGNUP
+ */
 router.get('/signup', function (req, res, next) {
   res.render('signup', {});
 });
@@ -71,12 +74,29 @@ router.post('/signup', function(req, res, next){
             //TODO: figure out why this doesn't work
             req.flash('error', 'This email is already in use');
             res.redirect('/');
+            return;
         }
+        //TODO: Implement validation
         let m = new Mentor({
+            email: req.body.email,
+            password: req.body.password,
+            name: 'null'
 
         });
+        //go to onboarding-flow
+        m.save(function(err){
+            if(err){
+                throw err;
+            }
+            //TODO: Insecure
+            res.redirect('/onboard?email='+req.body.email);
+        });
     });
-    //go to onboarding-flow
+
+});
+
+router.get('/onboard', function (req, res, next) {
+    res.render('onboard-1', {email: req.query.email});
 });
 
 router.get('/mentorboard', checkAuth, function(req, res, next){

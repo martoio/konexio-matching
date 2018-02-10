@@ -26,7 +26,6 @@ const MentorSchema = new Schema({
     },
     location: {
         type: String,
-        required: true
     },
     company: {
         type: String
