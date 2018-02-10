@@ -5,9 +5,13 @@ const Mentor = require('../models/Mentor');
 const Question = require('../models/Question');
 
 const passport = require('../auth/index');
-/* GET home page. */
+
+
+/**
+ * GET home page.
+ * */
 router.get('/', function(req, res, next) {
-  res.render('root', { messages: req.flash('error')});
+  res.render('root', { sessionFlash: res.locals.sessionFlash});
 });
 
 /***
@@ -72,7 +76,10 @@ router.post('/signup', function(req, res, next){
         if(user){
             //set flash message;
             //TODO: figure out why this doesn't work
-            req.flash('error', 'This email is already in use');
+            req.session.sessionFlash = {
+                type: 'error',
+                message: 'This email is already in use'
+            };
             res.redirect('/');
             return;
         }
@@ -97,6 +104,29 @@ router.post('/signup', function(req, res, next){
 
 router.get('/onboard', function (req, res, next) {
     res.render('onboard-1', {email: req.query.email});
+});
+
+router.get('/onboard-2', function (req, res, next) {
+    //TODO: Make this more robust...
+    let interests = JSON.parse(JSON.stringify(req.query));
+    delete interests.email;
+    res.render('onboard-2', {email: req.query.email, interests: Object.keys(interests)});
+});
+
+router.post('/register', function (req, res, next) {
+    console.log(req.body);
+    //TODO: validate data
+    let m = new Mentor({
+        name: req.body.firstName+' '+lastName,
+        position: req.body.position,
+        location: req.body.country,
+        email: req.body.email,
+        bio: req.body.bio,
+        experience: req.body.skills,
+        interests: req.body.interests.split(',')
+
+    });
+
 });
 
 router.get('/mentorboard', checkAuth, function(req, res, next){

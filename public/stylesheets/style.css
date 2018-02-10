@@ -41,7 +41,7 @@ dark blue - #053F67
 	margin: auto;
 	display: flex;
 	justify-content: space-between;
-	max-width: 45%;
+	max-width: 550px;
 	margin-bottom: 30px;
 }
 
@@ -55,8 +55,35 @@ dark blue - #053F67
 	outline: none;
 }
 
-#inter-button-space {
-	width: 100px;
+#help-subtitle {
+	font-size: 40px;
+}
+
+#help-choice-group {
+	margin-top: 30px;
+}
+
+.help-choice {
+	height: 150px;
+	width: 400px;
+	margin: auto;
+}
+
+.help-type {
+	text-align: left;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.type-desc {
+	text-align: left;
+}
+
+.icon {
+	float: left;
+	height: 80px;
+	margin-right: 30px;
+	cursor: pointer;
 }
 
 .input {
@@ -84,7 +111,26 @@ dark blue - #053F67
 	margin: 40px 0px 40px 0px;
 }
 
+.next-arrow {
+	background-color: #1276BF;
+	float: right;
+}
 
+.next-arrow a {
+	padding: 6px 8px 6px 16px;
+	text-decoration: none;
+	font-size: 25px;
+	color: white;
+}
+
+#mentor-heading {
+	width: 400px;
+	height: 150px;
+}
+
+#mentor-heading img {
+	height: 125px;
+}
 
 /* Dashboard */
 
@@ -177,10 +223,19 @@ dark blue - #053F67
 	background-color: #555;
 }
 
+.circle-group {
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	max-width: 70px;
+	margin-bottom: 30px;
+}
+
 #circle {
 	width: 20px;
 	height: 20px;
 	background: #979797;
+	border: 2px solid #979797;
 	-moz-border-radius: 50px;
 	-webkit-border-radius: 50px;
 	border-radius: 50px;
@@ -189,9 +244,7 @@ dark blue - #053F67
 #empty-circle {
 	width: 20px;
 	height: 20px;
-	/*background: #979797;*/
-	border-width: 2px;
-	border-color: #979797;
+	border: 2px solid #979797;
 	-moz-border-radius: 50px;
 	-webkit-border-radius: 50px;
 	border-radius: 50px;

@@ -1,9 +1,19 @@
+<style>
+    .error {
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+        width: 400px;
+        margin: auto;
+    }
+</style>
+
 <div class="center">
     <img id="title" src="images/logo.png" />
     <form action="/login" method="post" id="signup-form">
         <div class="input-group">
-            <div><input class="input" name="email" type="email" placeholder="EMAIL" /></div>
-            <div><input class="input" name="password" type="password" placeholder="PASSWORD" /></div>
+            <div><input class="input" name="email" type="email" placeholder="EMAIL" required/></div>
+            <div><input class="input" name="password" type="password" placeholder="PASSWORD" required/></div>
         </div>
         <div class="button-group">
             <input id="login-btn" class="button login-button" type="submit" value="LOG IN">
@@ -12,13 +22,16 @@
         </div>
     </form>
     <div class="text"><a href="">Forgot your password?</a></div>
-</div>
 
-{{#if messages}}
-    <div class="error">
-        {{messages.info}}
-    </div>
-{{/if}}
+
+    {{#if sessionFlash.message}}
+        <div class="error">
+            {{sessionFlash.message}}
+        </div>
+    {{/if}}
+
+
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>

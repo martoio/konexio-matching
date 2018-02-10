@@ -5,7 +5,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var flash = require('express-flash');
 var index = require('./routes/index');
 
 const passport = require('./auth/index');
@@ -25,8 +24,13 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
-
+// Custom flash middleware -- from Ethan Brown's book, 'Web Development with Node & Express'
+app.use(function(req, res, next){
+    // if there's a flash message in the session request, make it available in the response, then delete it
+    res.locals.sessionFlash = req.session.sessionFlash;
+    delete req.session.sessionFlash;
+    next();
+});
 //TODO: USE PARTIALS
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

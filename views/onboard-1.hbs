@@ -1,0 +1,87 @@
+<div class="center">
+    <img id="title" src="images/logo.png" />
+    <div id="help-subtitle">How can you help our students?</div>
+    <div id="help-choice-group">
+        <div class="help-choice">
+            <img class="icon" name="code" id="code" src="images/CodeUnclicked.png" onclick="swapCode();"/>
+            <div class="help-type">Technical Skills</div>
+            <div class="type-desc">Help with coding, algorithms, and other computer skills</div>
+        </div>
+        <div class="help-choice">
+            <img class="icon" name="career" id="career" src="images/CareerUnclicked.png" onclick="swapCareer()"/>
+            <div class="help-type">Career Development</div>
+            <div class="type-desc">Help with career direction, interview prep, and other career planning steps</div>
+        </div>
+        <div class="help-choice">
+            <img class="icon" name="personal" id="personal" src="images/PersonalUnclicked.png" onclick="swapPersonal()"/>
+            <div class="help-type">Personal Development</div>
+            <div class="type-desc">Help asylum seekers acclimate to life in France</div>
+        </div>
+    </div>
+    <button class="next-arrow"><a id='next' href="/onboard-2?email={{email}}">&rarr;</a></button>
+    <div class="circle-group">
+        <div id="circle"></div><div id="empty-circle"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    let a = document.getElementById('next');
+    a.addEventListener('click', function (e) {
+        e.preventDefault();
+        let i = 0;
+        for(let h in help){
+            if(help[h]){
+                i++;
+                a.href += '&'+h;
+            }
+        }
+        if(i===0){
+            alert('You have to select at least 1 category');
+            return false;
+        }
+        window.location.replace(a.href);
+    });
+
+    let codeImage = "images/CodeUnclicked.png";
+    let help = {
+        tech: false,
+        career: false,
+        personal: false
+    };
+    function swapCode() {
+        if (codeImage === "images/CodeUnclicked.png") {
+            codeImage = "images/CodeClicked.png";
+            help.tech = true;
+        } else {
+            help.tech = false;
+            codeImage = "images/CodeUnclicked.png";
+        }
+        let imgElement = document.getElementById('code');
+        imgElement.src = codeImage;
+        console.log(help);
+    }
+    let careerImage = "images/CareerUnclicked.png";
+    function swapCareer() {
+        if (careerImage === "images/CareerUnclicked.png") {
+            help.career = true;
+            careerImage = "images/CareerClicked.png"
+        } else {
+            help.career = false;
+            careerImage = "images/CareerUnclicked.png";
+        }
+        let imgElement = document.getElementById('career');
+        imgElement.src = careerImage;
+    }
+    let personalImage = "images/PersonalUnclicked.png";
+    function swapPersonal() {
+        if (personalImage === "images/PersonalUnclicked.png") {
+            help.personal = true;
+            personalImage = "images/PersonalClicked.png"
+        } else {
+            help.personal = false;
+            personalImage = "images/PersonalUnclicked.png";
+        }
+        let imgElement = document.getElementById('personal');
+        imgElement.src = personalImage;
+    }
+</script>
