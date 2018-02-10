@@ -1,0 +1,65 @@
+#center {
+	text-align: center;
+}
+
+#subtitle {
+	font-family: "Arial";
+	color: #0078B9;
+}
+
+.text {
+	font-family: "Arial";
+}
+
+#title {
+	margin-top: 80px;
+}
+
+.button {
+	color: white;
+	font-size: 40px;
+	margin-top: 30px;
+	display: inline-block;
+	width: 250px;
+	border-radius: 20px;
+}
+
+.button-group {
+	margin-top: 20px;
+}
+
+.login-button {
+	background-color: #26AAE1;
+}
+
+.signup-button {
+	background-color: #053F67;
+}
+
+.input {
+	padding: 5px 20px 5px 20px;
+	font-size: 40px;
+	margin-top: 30px;
+	display: inline-block;
+	width: 400px;
+	border-radius: 25px;
+	box-shadow:5px 5px 10px grey; 
+	outline: none;
+	background-color: #F9F9F9;
+	border: none;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #26AAE1;
+    opacity: 1;
+}
+
+.input-group {
+	margin: 40px 0px 40px 0px;
+}
+
+
+
+
+
+
