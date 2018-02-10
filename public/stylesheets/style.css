@@ -1,4 +1,4 @@
-#center {
+.center {
 	text-align: center;
 }
 
@@ -62,15 +62,14 @@
 
 /* Dashboard */
 
-
 .sidenav {
     height: 100%;
-    width: 160px;
+    width: 200px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background-color: #053F67;
     overflow-x: hidden;
     padding-top: 20px;
 }
@@ -88,7 +87,7 @@
 }
 
 .main {
-    margin-left: 160px; /* Same as the width of the sidenav */
+    margin-left: 200px; /* Same as the width of the sidenav */
     font-size: 28px; /* Increased text to enable scrolling */
     padding: 0px 10px;
 }
@@ -97,3 +96,58 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
+
+
+#pin {
+	width: 40%;
+	height: 40%;
+	margin-top: 20px;
+	margin-bottom: 50px;
+}
+
+#heads {
+	width: 60%;
+	height: 60%;
+	margin-top: 45px;
+	margin-bottom: 45px;
+}
+
+#gear {
+	width: 60%;
+	height: 60%;
+	margin-top: 45px;
+}
+
+/* */
+
+#log-out {
+	float: right;
+	background-color: white;
+	border-color: #053F67;
+	color: #053F67;
+	border-radius: 25%;
+	font-size: 20px;
+}
+
+.dash-title {
+	margin-top: 40px;
+	color: #1276BF;
+}
+
+.sec-title {
+	color: #053F67;
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  height: 400px;
+  align-content: space-between;
+}
+
+.square {
+  height: 50px;
+  width: 50px;
+  background-color: #555;
+}
+

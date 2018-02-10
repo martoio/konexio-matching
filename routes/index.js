@@ -57,8 +57,12 @@ router.post('/signup', function(req, res, next){
 
 });
 
-router.get('/dashboard', function(req, res, next){
-    res.render('dashboard');
+router.get('/mentorboard', function(req, res, next){
+    res.render('mentorboard');
+});
+
+router.get('/questionboard', function(req, res, next){
+    res.render('questionboard');
 });
 
 module.exports = router;
