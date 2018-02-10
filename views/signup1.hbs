@@ -1,24 +1,61 @@
 <div class="center">
 	<img id="title" src="images/logo.png" />
-	<div id="help-text">How can you help our students?</div>
+	<div id="help-subtitle">How can you help our students?</div>
 	<div id="help-choice-group">
 		<div class="help-choice">
-			<img src="person"/>
-			<div class="">Technical Skills</div>
-			<div>Help with coding, algorithms, and other computer skills</div>
+			<img class="icon" name="code" id="code" src="images/CodeUnclicked.png" onclick="swapCode();"/>
+			<div class="help-type">Technical Skills</div>
+			<div class="type-desc">Help with coding, algorithms, and other computer skills</div>
 		</div>
 		<div class="help-choice">
-			<img src=""/>
-			<div class="images/CareerUnclicked.png">Career Development</div>
-			<div>Help with career direction, interview prep, and other career planning steps</div>
+			<img class="icon" name="career" id="career" src="images/CareerUnclicked.png" onclick="swapCareer()"/>
+			<div class="help-type">Career Development</div>
+			<div class="type-desc">Help with career direction, interview prep, and other career planning steps</div>
 		</div>
 		<div class="help-choice">
-			<img src="images/PersonalUnclicked.png"/>
-			<div class="">Personal Development</div>
-			<div>Help asylum seekers acclimate to life in France</div>
+			<img class="icon" name="personal" id="personal" src="images/PersonalUnclicked.png" onclick="swapPersonal()"/>
+			<div class="help-type">Personal Development</div>
+			<div class="type-desc">Help asylum seekers acclimate to life in France</div>
 		</div>
 	</div>
-	<div class="bottom-circles">
+	<button class="next-arrow"><a href="/signup2">&rarr;</a></button> 
+	<div class="circle-group">
 		<div id="circle"></div><div id="empty-circle"></div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	
+	var codeImage = "images/CodeUnclicked.png";
+	function swapCode() {
+  		if (codeImage == "images/CodeUnclicked.png") {
+  			codeImage = "images/CodeClicked.png"
+  		} else {
+  			codeImage = "images/CodeUnclicked.png";
+  		}
+		var imgElement = document.getElementById('code');
+		imgElement.src = codeImage;
+	}
+
+	var careerImage = "images/CareerUnclicked.png";
+	function swapCareer() {
+  		if (careerImage == "images/CareerUnclicked.png") {
+  			careerImage = "images/CareerClicked.png"
+  		} else {
+  			careerImage = "images/CareerUnclicked.png";
+  		}
+		var imgElement = document.getElementById('career');
+		imgElement.src = careerImage;
+	}
+
+	var personalImage = "images/PersonalUnclicked.png";
+	function swapPersonal() {
+  		if (personalImage == "images/PersonalUnclicked.png") {
+  			personalImage = "images/PersonalClicked.png"
+  		} else {
+  			personalImage = "images/PersonalUnclicked.png";
+  		}
+		var imgElement = document.getElementById('personal');
+		imgElement.src = personalImage;
+	}
+</script>
