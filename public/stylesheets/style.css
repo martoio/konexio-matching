@@ -1,3 +1,9 @@
+/*
+light blue - #26AAE1
+blue - #1276BF
+dark blue - #053F67
+*/
+
 .center {
 	text-align: center;
 }
@@ -132,8 +138,9 @@
 }
 
 .dash-title {
-	margin-top: 40px;
+	margin-top: 5px;
 	color: #1276BF;
+	font-size: 50px;
 }
 
 .sec-title {
@@ -143,12 +150,23 @@
 .box {
   display: flex;
   justify-content: space-between;
-  margin: 0px 120px 0px 120px;
+  margin: 20px 120px 0px 120px;
 }
 
 .square {
-  height: 50px;
-  width: 50px;
+  height: 150px;
+  width: 150px;
   background-color: #555;
 }
+
+.name {
+	font-size: 24px;
+	color: #1276BF;
+}
+
+.interest {
+	font-size: 12px;
+	color: #1276BF;
+}
+
 
