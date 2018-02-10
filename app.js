@@ -5,7 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var flash = require('express-flash');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -14,17 +14,19 @@ const session = require('express-session');
 
 let mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/konexio');
+mongoose.connect(process.env.DB);
 
 var app = express();
 
 app.use(session({
-    secret: process.env.SESSION_SECRET
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: true,
+    resave: false
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(flash());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
