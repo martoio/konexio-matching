@@ -49,11 +49,19 @@ function log(req, res, next){
     next();
 }
 
-router.get('/signup', function (req, res, next) {
-  res.render('signup', {});
+router.get('/signup1', function (req, res, next) {
+  res.render('signup1', {});
 });
 
-router.post('/signup', function(req, res, next){
+router.post('/signup1', function(req, res, next){
+
+});
+
+router.get('/signup2', function (req, res, next) {
+  res.render('signup2', {});
+});
+
+router.post('/signup2', function(req, res, next){
 
 });
 

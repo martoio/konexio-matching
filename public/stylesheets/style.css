@@ -23,15 +23,26 @@ dark blue - #053F67
 
 .button {
 	color: white;
-	font-size: 40px;
+	font-size: 30px;
 	margin-top: 30px;
 	display: inline-block;
 	width: 250px;
+	height: 60px;
 	border-radius: 20px;
 }
 
+.button a {
+  color: blue;
+  text-decoration: none; /* no underline */
+  color: white;
+}
+
 .button-group {
-	margin: 20px 0px 20px 0px;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	max-width: 45%;
+	margin-bottom: 30px;
 }
 
 .login-button {
@@ -44,22 +55,29 @@ dark blue - #053F67
 	outline: none;
 }
 
+#inter-button-space {
+	width: 100px;
+}
+
 .input {
 	padding: 5px 20px 5px 20px;
-	font-size: 40px;
-	margin-top: 30px;
+	font-size: 30px;
+	margin-top: 20px;
 	display: inline-block;
 	width: 400px;
-	border-radius: 25px;
-	box-shadow:5px 5px 10px grey; 
+	border-radius: 5px;
+	border-width: 1px;
+	border-color: #EAEAEA;
 	outline: none;
 	background-color: #F9F9F9;
-	border: none;
+	padding-bottom: 15px;
+	padding-top: 10px;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #26AAE1;
+    color: gray;
     opacity: 1;
+    font-size: 16px;
 }
 
 .input-group {
@@ -157,6 +175,26 @@ dark blue - #053F67
   height: 150px;
   width: 150px;
   background-color: #555;
+}
+
+#circle {
+	width: 20px;
+	height: 20px;
+	background: #979797;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+
+#empty-circle {
+	width: 20px;
+	height: 20px;
+	/*background: #979797;*/
+	border-width: 2px;
+	border-color: #979797;
+	-moz-border-radius: 50px;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
 }
 
 .name {
