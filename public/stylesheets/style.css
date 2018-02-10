@@ -25,15 +25,17 @@
 }
 
 .button-group {
-	margin-top: 20px;
+	margin: 20px 0px 20px 0px;
 }
 
 .login-button {
 	background-color: #26AAE1;
+	outline: none;
 }
 
 .signup-button {
 	background-color: #053F67;
+	outline: none;
 }
 
 .input {
@@ -140,9 +142,8 @@
 
 .box {
   display: flex;
-  flex-wrap: wrap;
-  height: 400px;
-  align-content: space-between;
+  justify-content: space-between;
+  margin: 0px 120px 0px 120px;
 }
 
 .square {
